@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: block-propducer-configmap
+  name: block-producer-configmap
 data:
   CARDANO_TOPOLOGY: |
     {

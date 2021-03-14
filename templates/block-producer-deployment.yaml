@@ -20,14 +20,20 @@ spec:
         - name: block-producer-pv
           persistentVolumeClaim:
             claimName: block-producer-pv-claim
+        - name: keys
+          secret:
+            secretName: producer-keys
+            defaultMode: 0777
       containers:
         - name: block-producer
           image: {{ .Values.CardanoContainer }}
           imagePullPolicy: Always
           args: ["run"]
           volumeMounts:
-            - mountPath: "/usr/share/nginx/html"
+            - mountPath: /opt/cardano/data
               name: block-producer-pv
+            - mountPath: /var/cardano/config/keys
+              name: keys
           ports:
             - containerPort: {{ .Values.ClusterCommsPort }}
               name: cluster-comms
