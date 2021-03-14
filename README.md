@@ -16,6 +16,8 @@ minikube dashboard
 ```
 You should see all nodes eventually turn green, meaning the cluster is up and health.
 
+**Failure to supply keys will result in the block-producer failing to start.**
+
 ## Logs
 Logs can be accessed in the standard kubectl fashion:
 ```sh
@@ -32,3 +34,10 @@ kubectl logs <pod-name> -f
     - Keys are not exposed to anything except for the K8s cluster
     - Due to how K8s handles secrets, the keys are copied from one volume in to another.
         - The keys must be copied from the `secrets` volume in to another volume because Cardano requires the files to have RW permissions, and k8s only allow RO permissions on secret volumes. [github issue](https://github.com/kubernetes/kubernetes/issues/62099)
+
+## Storage
+All nodes make use of data volumes on `/opt/cardano/data` to prevent the nodes from having to fully sync again if they go offline
+
+## Contribute
+PRs are very welcome, as well as ADA donations:
+- addr1qx2t4hr27795vwfpqffca6dzt9kfw77h362f0un0h2m8rsn0k2ukr28kxc4fzuxvrwf535zw78cc2p3er9hlnled9nsqhqc9uz
