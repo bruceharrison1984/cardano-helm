@@ -2,3 +2,4 @@ ClusterCommsPort: 3001
 RelayServiceIp: 10.96.1.1
 BlockProducerServiceIp: 10.96.2.1
 CardanoContainer: nessusio/cardano-node
+NumberOfRelays: 3

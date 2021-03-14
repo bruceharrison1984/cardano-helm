@@ -8,13 +8,13 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app: relay # has to match .spec.template.metadata.labels
+      app: relay
   serviceName: relay
-  replicas: 3 # by default is 1
+  replicas: {{ .Values.NumberOfRelays }}
   template:
     metadata:
       labels:
-        app: relay # has to match .spec.selector.matchLabels
+        app: relay
     spec:
       terminationGracePeriodSeconds: 10
       containers:

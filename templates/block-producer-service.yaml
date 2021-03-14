@@ -12,3 +12,4 @@ spec:
   ports:
     - port: {{ .Values.ClusterCommsPort }}
       targetPort: {{ .Values.ClusterCommsPort }}
+      name: cluster-comms
