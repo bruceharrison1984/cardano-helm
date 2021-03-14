@@ -1,0 +1,5 @@
+*.skey
+*.vkey
+*.counter
+*.cert
+*.json

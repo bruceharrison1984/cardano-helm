@@ -16,11 +16,18 @@ spec:
         app: block-producer
         group: block-producers
     spec:
+      volumes:
+        - name: block-producer-pv
+          persistentVolumeClaim:
+            claimName: block-producer-pv-claim
       containers:
         - name: block-producer
           image: {{ .Values.CardanoContainer }}
           imagePullPolicy: Always
           args: ["run"]
+          volumeMounts:
+            - mountPath: "/usr/share/nginx/html"
+              name: block-producer-pv
           ports:
             - containerPort: {{ .Values.ClusterCommsPort }}
               name: cluster-comms
