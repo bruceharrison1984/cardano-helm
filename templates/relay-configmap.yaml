@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: relay-configmap
+data:
+  CARDANO_TOPOLOGY: |
+    {
+      "Producers": [
+        {
+          "addr": "relays-new.cardano-mainnet.iohk.io",
+          "port": {{ .Values.ClusterCommsPort }},
+          "valency": 1
+        },
+        {
+          "addr": "{{ .Values.BlockProducerServiceIp }}",
+          "port": {{ .Values.ClusterCommsPort }},
+          "valency": 1
+        }
+      ]
+    }
+  CARDANO_CUSTOM_PEERS: {{ .Values.BlockProducerServiceIp }}:{{ .Values.ClusterCommsPort }}
+  CARDANO_UPDATE_TOPOLOGY: "true"

@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: block-propducer-configmap
+data:
+  CARDANO_TOPOLOGY: |
+    {
+      "Producers": [
+        {
+          "addr": "{{ .Values.RelayServiceIp }}",
+          "port": {{ .Values.ClusterCommsPort }},
+          "valency": 1
+        }
+      ]
+    }
+  CARDANO_BLOCK_PRODUCER: "true"

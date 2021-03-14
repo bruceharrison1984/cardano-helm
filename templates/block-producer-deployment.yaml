@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: block-producer
+  labels:
+    app: block-producer
+    group: block-producers
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: block-producer
+  template:
+    metadata:
+      labels:
+        app: block-producer
+        group: block-producers
+    spec:
+      containers:
+        - name: block-producer
+          image: {{ .Values.CardanoContainer }}
+          imagePullPolicy: Always
+          args: ["run"]
+          ports:
+            - containerPort: {{ .Values.ClusterCommsPort }}
+              name: cluster-comms
+          envFrom:
+            - configMapRef:
+                name: block-producer-configmap

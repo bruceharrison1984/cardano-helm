@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: relay
+  labels:
+    app: relay
+    group: relays
+spec:
+  selector:
+    matchLabels:
+      app: relay # has to match .spec.template.metadata.labels
+  serviceName: relay
+  replicas: 3 # by default is 1
+  template:
+    metadata:
+      labels:
+        app: relay # has to match .spec.selector.matchLabels
+    spec:
+      terminationGracePeriodSeconds: 10
+      containers:
+        - name: relay
+          image: {{ .Values.CardanoContainer }}
+          imagePullPolicy: Always
+          args: ["run"]
+          ports:
+            - containerPort: {{ .Values.ClusterCommsPort }}
+              name: cluster-comms
+          envFrom:
+            - configMapRef:
+                name: relay-configmap
+          volumeMounts:
+          - name: relay-data
+            mountPath: /opt/cardano/data
+  volumeClaimTemplates:
+  - metadata:
+      name: relay-data
+    spec:
+      accessModes: 
+        - ReadWriteOnce
+      resources:
+        requests:
+          storage: 1Gi
