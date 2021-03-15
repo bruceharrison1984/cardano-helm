@@ -6,6 +6,7 @@ These charts will deploy a Cardano cluster with one block-producer, and 3 relay 
 - kubectl
 - minikube if running locally
 
+
 ## Usage (minikube)
 - Copy all keys in to `./keys` in the root of this project
 - Run the following from the root of this project:
@@ -37,6 +38,11 @@ kubectl logs <pod-name> -f
 
 ## Storage
 All nodes make use of data volumes on `/opt/cardano/data` to prevent the nodes from having to fully sync again if they go offline
+
+## Container
+The container used here is [nessusio/cardano](https://hub.docker.com/r/nessusio/cardano).
+
+[The creator runs his own pool (ASTOR), so please check it out.](http://astorpool.net/)
 
 ## Contribute
 PRs are very welcome, as well as ADA donations:
