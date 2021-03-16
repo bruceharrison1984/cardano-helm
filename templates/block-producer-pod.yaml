@@ -28,8 +28,8 @@ spec:
           name: block-producer-keys
   containers:
     - name: block-producer
-      image: {{ .Values.CardanoContainer }}
-      imagePullPolicy: Always
+      image: {{ include "cardano.container" . }}
+      imagePullPolicy: IfNotPresent
       args: ["run"]
       volumeMounts:
         - mountPath: /opt/cardano/data

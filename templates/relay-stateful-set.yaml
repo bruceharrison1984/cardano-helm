@@ -20,8 +20,8 @@ spec:
       terminationGracePeriodSeconds: 10
       containers:
         - name: relay
-          image: {{ .Values.CardanoContainer }}
-          imagePullPolicy: Always
+          image: {{ include "cardano.container" . }}
+          imagePullPolicy: IfNotPresent
           args: ["run"]
           ports:
             - containerPort: {{ .Values.ClusterCommsPort }}
