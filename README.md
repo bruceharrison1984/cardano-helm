@@ -12,18 +12,24 @@ These charts will deploy a Cardano cluster with one block-producer, and 3 relay 
 - Run the following from the root of this project:
 ```sh
 minikube start
-helm install cardano . --values Values.yaml
+helm install cardano . --values Values.yaml --namespace cardano --create-namespace
 minikube dashboard
 ```
 You should see all nodes eventually turn green, meaning the cluster is up and health.
 
 **Failure to supply keys will result in the block-producer failing to start.**
 
-## Logs
+## Useful commands
 Logs can be accessed in the standard kubectl fashion:
 ```sh
 kubectl get pods
-kubectl logs <pod-name> -f
+kubectl logs --namespace cardano <pod-name> -f 
+```
+
+gLiveView can be accessed as follows:
+```sh
+kubectl get pods
+kubectl exec -it --namespace cardano <pod-name> -- gLiveView
 ```
 
 ## Keys

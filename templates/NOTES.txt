@@ -1,0 +1,12 @@
+Thank you for installing {{ .Chart.Name }}.
+
+Your cluster will be ready soon. Once all the pods are online, they should begin syncing with the mainnet.
+Relays will automatically connect to your producer node (block-producer)
+
+To learn more about the release, try:
+
+  $ helm status {{ .Release.Name }}
+  $ helm get all {{ .Release.Name }}
+  $ kubectl get pods --namespace {{ .Release.Namespace }}
+  $ kubectl exec -it --namespace {{ .Release.Namespace }} <pod-name> -- gLiveView
+  $ kubectl logs --namespace {{ .Release.Namespace }} <pod-name> -f 
