@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: block-producer-configmap
+  name: block-producer
   labels: 
-    group: block-producer
+    {{- include "block-producer.labels" . | nindent 4 }}
 data:
   CARDANO_TOPOLOGY: |
     {

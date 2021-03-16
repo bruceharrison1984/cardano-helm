@@ -3,19 +3,19 @@ kind: StatefulSet
 metadata:
   name: relay
   labels:
-    app: relay
-    group: relays
+    {{- include "relay.labels" . | nindent 4 }}
 spec:
   selector:
     matchLabels:
-      app: relay
-  serviceName: relay
+      {{- include "relay.selectorLabels" . | nindent 6 }}
+  serviceName: relays
   replicas: {{ .Values.NumberOfRelays }}
   template:
     metadata:
       labels:
-        app: relay
-        group: relays
+        {{- include "relay.labels" . | nindent 8 }}
+      annotations:
+        checksum/config: {{ include (print $.Template.BasePath "/relay-configmap.yaml") . | sha256sum }}
     spec:
       terminationGracePeriodSeconds: 10
       containers:

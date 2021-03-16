@@ -3,12 +3,12 @@ kind: Service
 metadata:
   name: internal-relays
   labels: 
-    group: relays
+    {{- include "relay.labels" . | nindent 4 }}
 spec:
   type: ClusterIP
   clusterIP: None
   selector:
-    app: relay
+    {{- include "relay.selectorLabels" . | nindent 4 }}
   ports:
     - port: {{ .Values.ClusterCommsPort }}
       targetPort: {{ .Values.ClusterCommsPort }}

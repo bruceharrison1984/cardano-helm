@@ -3,16 +3,17 @@ kind: Pod
 metadata:
   name: block-producer
   labels:
-    app: block-producer
-    group: block-producers
+    {{- include "block-producer.labels" . | nindent 4 }}
+  annotations:
+    checksum/config: {{ include (print $.Template.BasePath "/block-producer-configmap.yaml") . | sha256sum }}
 spec:
   volumes:
-    - name: block-producer-pv-data
+    - name: block-producer-data
       persistentVolumeClaim:
-        claimName: block-producer-pv-data-claim
-    - name: block-producer-pv-keys
+        claimName: block-producer-data-claim
+    - name: block-producer-keys
       persistentVolumeClaim:
-        claimName: block-producer-pv-keys-claim
+        claimName: block-producer-keys-claim
     - name: keys
       secret:
         secretName: producer-keys
@@ -24,7 +25,7 @@ spec:
         - mountPath: /secret-keys
           name: keys
         - mountPath: /writable-keys
-          name: block-producer-pv-keys
+          name: block-producer-keys
   containers:
     - name: block-producer
       image: {{ .Values.CardanoContainer }}
@@ -32,9 +33,9 @@ spec:
       args: ["run"]
       volumeMounts:
         - mountPath: /opt/cardano/data
-          name: block-producer-pv-data
+          name: block-producer-data
         - mountPath: /var/cardano/config/keys
-          name: block-producer-pv-keys
+          name: block-producer-keys
       ports:
         - containerPort: {{ .Values.ClusterCommsPort }}
           name: cluster-comms

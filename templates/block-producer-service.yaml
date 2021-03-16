@@ -3,12 +3,12 @@ kind: Service
 metadata:
   name: block-producer
   labels: 
-    group: block-producer
+    {{- include "block-producer.labels" . | nindent 4 }}
 spec:
   type: ClusterIP
   clusterIP: None
   selector:
-    app: block-producer
+    {{- include "block-producer.selectorLabels" . | nindent 4 }}
   ports:
     - port: {{ .Values.ClusterCommsPort }}
       targetPort: {{ .Values.ClusterCommsPort }}
