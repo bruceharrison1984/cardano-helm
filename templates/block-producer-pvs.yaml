@@ -16,7 +16,7 @@ kind: PersistentVolumeClaim
 metadata:
   name: block-producer-data-claim
   labels: 
-    {{- include "relay.labels" . | nindent 4 }}
+    {{- include "block-producer.labels" . | nindent 4 }}
 spec:
   accessModes:
     - ReadWriteMany
