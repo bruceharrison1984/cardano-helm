@@ -1,12 +1,24 @@
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 Thank you for installing {{ .Chart.Name }}.
 
 Your cluster will be ready soon. Once all the pods are online, they should begin syncing with the mainnet.
 Relays will automatically connect to your producer node (block-producer)
 
 To learn more about the release, try:
+ > helm status {{ .Release.Name }}
+ > helm get all {{ .Release.Name }}
 
-  $ helm status {{ .Release.Name }}
-  $ helm get all {{ .Release.Name }}
-  $ kubectl get pods --namespace {{ .Release.Namespace }}
-  $ kubectl exec -it --namespace {{ .Release.Namespace }} <pod-name> -- gLiveView
-  $ kubectl logs --namespace {{ .Release.Namespace }} <pod-name> -f 
+To view the status of your cluster, try the following commands:
+ > kubectl get pods --namespace {{ .Release.Namespace }}
+ > kubectl exec -it --namespace {{ .Release.Namespace }} <pod-name> -- gLiveView
+ > kubectl logs --namespace {{ .Release.Namespace }} <pod-name> -f
+
+To help develop these templates, please submit PRs!
+ > https://github.com/bruceharrison1984/cardano-helm
+
+If you're feeling generous, send me some ADA so I can buy more beer!
+ > addr1qx2t4hr27795vwfpqffca6dzt9kfw77h362f0un0h2m8rsn0k2ukr28kxc4fzuxvrwf535zw78cc2p3er9hlnled9nsqhqc9uz
+
+This would not have been possible without the hard-work of the people at ASTOR:
+ > http://astorpool.net/
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
