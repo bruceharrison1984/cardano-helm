@@ -9,13 +9,15 @@ data:
     global:
       scrape_interval:     15s
       external_labels:
-        monitor: 'codelab-monitor'
+        monitor: cardano-monitor
     scrape_configs:
-      - job_name: 'cardano' # To scrape data from the cardano node
+      - job_name: cardano-producer # To scrape data from the cardano node
         scrape_interval: 5s
         static_configs:
           - targets:
             - block-producer.{{ .Release.Namespace }}.svc.cluster.local:12798
+      - job_name: cardano-relay # To scrape data from the cardano node
+        scrape_interval: 5s
         dns_sd_configs:
           - names:
             - internal-relays.{{ .Release.Namespace }}.svc.cluster.local
