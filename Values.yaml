@@ -6,8 +6,10 @@ RelayMemoryRequest: 2048Mi
 RelayMemoryLimit: 8192Mi
 RelayCpuRequest: 1
 RelayCpuLimit: 2
+RelayStorageRequest: 10Gi
 
-CpuMemoryRequest: 2048Mi
-CpuMemoryLimit: 8192Mi
-CpuCpuRequest: 1
-CpuCpuLimit: 2
+BlockProducerMemoryRequest: 2048Mi
+BlockProducerMemoryLimit: 8192Mi
+BlockProducerCpuRequest: 1
+BlockProducerCpuLimit: 2
+BlockProducerStorageRequest: 30Gi

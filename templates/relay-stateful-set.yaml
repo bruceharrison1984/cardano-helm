@@ -44,7 +44,7 @@ spec:
       name: relay-data
     spec:
       accessModes: 
-        - ReadWriteOnce
+        - ReadWriteMany
       resources:
         requests:
-          storage: 10Gi
+          storage: {{ .Values.RelayStorageRequest }}

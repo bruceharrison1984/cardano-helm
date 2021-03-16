@@ -32,11 +32,11 @@ spec:
       imagePullPolicy: IfNotPresent
       resources:
         requests:
-          memory: {{ .Values.CpuMemoryRequest }}
-          cpu: {{ .Values.CpuCpuRequest }}
+          memory: {{ .Values.BlockProducerMemoryRequest }}
+          cpu: {{ .Values.BlockProducerCpuRequest }}
         limits:
-          memory: {{ .Values.CpuMemoryLimit }}
-          cpu: {{ .Values.CpuCpuLimit }}
+          memory: {{ .Values.BlockProducerMemoryLimit }}
+          cpu: {{ .Values.BlockProducerCpuLimit }}
       args: ["run"]
       volumeMounts:
         - mountPath: /opt/cardano/data

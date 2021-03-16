@@ -6,7 +6,7 @@ metadata:
     {{- include "block-producer.labels" . | nindent 4 }}
 spec:
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
   resources:
     requests:
       storage: 5Mi
@@ -19,7 +19,7 @@ metadata:
     {{- include "relay.labels" . | nindent 4 }}
 spec:
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
   resources:
     requests:
-      storage: 10Gi
+      storage: {{ .Values.BlockProducerStorageRequest }}
