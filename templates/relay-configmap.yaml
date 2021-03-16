@@ -14,12 +14,12 @@ data:
           "valency": 1
         },
         {
-          "addr": "internal-relays.{{ .Release.Namespace }}.svc.cluster.local",
+          "addr": "block-producer.{{ .Release.Namespace }}.svc.cluster.local",
           "port": {{ .Values.ClusterCommsPort }},
-          "valency": {{ .Values.NumberOfRelays }}
+          "valency": 1
         },
         {
-          "addr": "block-producer.{{ .Release.Namespace }}.svc.cluster.local",
+          "addr": "internal-relays.{{ .Release.Namespace }}.svc.cluster.local",
           "port": {{ .Values.ClusterCommsPort }},
           "valency": {{ .Values.NumberOfRelays }}
         }
