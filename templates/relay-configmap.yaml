@@ -25,5 +25,5 @@ data:
         }
       ]
     }
-  CARDANO_CUSTOM_PEERS: block-producer.{{ .Release.Namespace }}.svc.cluster.local:{{ .Values.ClusterCommsPort }}|block-producer.{{ .Release.Namespace }}.svc.cluster.local:3001
+  CARDANO_CUSTOM_PEERS: block-producer.{{ .Release.Namespace }}.svc.cluster.local:{{ .Values.ClusterCommsPort }}|internal-relays.{{ .Release.Namespace }}.svc.cluster.local:3001
   CARDANO_UPDATE_TOPOLOGY: "true"
