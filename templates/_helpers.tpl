@@ -53,3 +53,19 @@ Block-Producer Selector labels
 {{- define "block-producer.selectorLabels" -}}
 app.kubernetes.io/name: block-producer
 {{- end }}
+
+
+{{/*
+Prometheus labels
+*/}}
+{{- define "prometheus.labels" -}}
+{{ include "prometheus.selectorLabels" . }}
+{{ include "common.labels" . }}
+{{- end }}
+
+{{/*
+Prometheus Selector labels
+*/}}
+{{- define "prometheus.selectorLabels" -}}
+app.kubernetes.io/name: prometheus
+{{- end }}

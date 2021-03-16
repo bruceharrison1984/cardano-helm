@@ -13,3 +13,11 @@ BlockProducerMemoryLimit: 8192Mi
 BlockProducerCpuRequest: 1
 BlockProducerCpuLimit: 2
 BlockProducerStorageRequest: 30Gi
+
+PrometheusContainer: "prom/prometheus:v2.25.2"
+
+PrometheusMemoryRequest: 2048Mi
+PrometheusMemoryLimit: 8192Mi
+PrometheusCpuRequest: 1
+PrometheusCpuLimit: 2
+PrometheusStorageRequest: 30Gi
