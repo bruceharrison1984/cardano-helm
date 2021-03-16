@@ -1,0 +1,29 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: block-producer
+  labels: 
+    {{- include "block-producer.labels" . | nindent 4 }}
+spec:
+  podSelector:
+    matchLabels:
+      {{- include "block-producer.selectorLabels" . | nindent 6 }}
+  policyTypes:
+  - Ingress
+  - Egress
+  ingress:
+  - from:
+    - podSelector:
+        matchLabels:
+          {{- include "relay.selectorLabels" . | nindent 10 }}
+    ports:
+    - protocol: TCP
+      port: {{ .Values.ClusterCommsPort }}
+  egress:
+  - to:
+    - podSelector:
+        matchLabels:
+          {{- include "relay.selectorLabels" . | nindent 10 }}
+    ports:
+    - protocol: TCP
+      port: {{ .Values.ClusterCommsPort }}

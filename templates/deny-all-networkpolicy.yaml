@@ -1,0 +1,11 @@
+# -- This policy locks down all ingress traffic to DENY, and explicit rules are required for each service
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: deny-all
+  labels: 
+    {{- include "common.labels" . | nindent 4 }}
+spec:
+  podSelector: {}
+  policyTypes:
+  - Ingress
