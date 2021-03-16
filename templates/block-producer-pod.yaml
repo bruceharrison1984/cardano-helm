@@ -16,7 +16,7 @@ spec:
         claimName: block-producer-keys-claim
     - name: keys
       secret:
-        secretName: producer-keys
+        secretName: block-producer-keys
   initContainers:
     - name: init-keys ## We use this container to copy the keys from secret ro storage to rw storage
       image: busybox:latest
@@ -41,4 +41,4 @@ spec:
           name: cluster-comms
       envFrom:
         - configMapRef:
-            name: block-producer-configmap
+            name: block-producer
