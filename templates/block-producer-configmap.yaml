@@ -6,13 +6,11 @@ data:
   CARDANO_TOPOLOGY: |
     {
       "Producers": [
-          {{- range untilStep 0 (int .Values.NumberOfRelays) 1 }}
         {
-          "addr": "relay-{{ . }}.relay.default.svc.cluster.local",
-          "port": {{ $.Values.ClusterCommsPort }},
-          "valency": 1
-        {{ eq . (sub (int $.Values.NumberOfRelays) 1) | ternary "}" "}," }}
-          {{- end }}
+          "addr": "internal-relays.default.svc.cluster.local",
+          "port": {{ .Values.ClusterCommsPort }},
+          "valency": {{ .Values.NumberOfRelays }}
+        }
       ]
     }
   CARDANO_BLOCK_PRODUCER: "true"

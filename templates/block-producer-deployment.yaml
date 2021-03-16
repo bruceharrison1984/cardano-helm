@@ -1,53 +1,43 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: v1
+kind: Pod
 metadata:
   name: block-producer
   labels:
     app: block-producer
     group: block-producers
 spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: block-producer
-  template:
-    metadata:
-      labels:
-        app: block-producer
-        group: block-producers
-    spec:
-      volumes:
-        - name: block-producer-pv-data
-          persistentVolumeClaim:
-            claimName: block-producer-pv-data-claim
-        - name: block-producer-pv-keys
-          persistentVolumeClaim:
-            claimName: block-producer-pv-keys-claim
-        - name: keys
-          secret:
-            secretName: producer-keys
-      initContainers:
-        - name: init-keys ## We use this container to copy the keys from secret ro storage to rw storage
-          image: busybox:latest
-          command: ['sh', '-c', "echo 'Copying keys from secrets in to writable location'; cp /secret-keys/* /writable-keys"]
-          volumeMounts:
-            - mountPath: /secret-keys
-              name: keys
-            - mountPath: /writable-keys
-              name: block-producer-pv-keys
-      containers:
-        - name: block-producer
-          image: {{ .Values.CardanoContainer }}
-          imagePullPolicy: Always
-          args: ["run"]
-          volumeMounts:
-            - mountPath: /opt/cardano/data
-              name: block-producer-pv-data
-            - mountPath: /var/cardano/config/keys
-              name: block-producer-pv-keys
-          ports:
-            - containerPort: {{ .Values.ClusterCommsPort }}
-              name: cluster-comms
-          envFrom:
-            - configMapRef:
-                name: block-producer-configmap
+  volumes:
+    - name: block-producer-pv-data
+      persistentVolumeClaim:
+        claimName: block-producer-pv-data-claim
+    - name: block-producer-pv-keys
+      persistentVolumeClaim:
+        claimName: block-producer-pv-keys-claim
+    - name: keys
+      secret:
+        secretName: producer-keys
+  initContainers:
+    - name: init-keys ## We use this container to copy the keys from secret ro storage to rw storage
+      image: busybox:latest
+      command: ['sh', '-c', "echo 'Copying keys from secrets in to writable location'; cp /secret-keys/* /writable-keys"]
+      volumeMounts:
+        - mountPath: /secret-keys
+          name: keys
+        - mountPath: /writable-keys
+          name: block-producer-pv-keys
+  containers:
+    - name: block-producer
+      image: {{ .Values.CardanoContainer }}
+      imagePullPolicy: Always
+      args: ["run"]
+      volumeMounts:
+        - mountPath: /opt/cardano/data
+          name: block-producer-pv-data
+        - mountPath: /var/cardano/config/keys
+          name: block-producer-pv-keys
+      ports:
+        - containerPort: {{ .Values.ClusterCommsPort }}
+          name: cluster-comms
+      envFrom:
+        - configMapRef:
+            name: block-producer-configmap

@@ -12,11 +12,16 @@ data:
           "valency": 1
         },
         {
-          "addr": "{{ .Values.BlockProducerServiceIp }}",
+          "addr": "internal-relays.default.svc.cluster.local",
           "port": {{ .Values.ClusterCommsPort }},
-          "valency": 1
+          "valency": {{ .Values.NumberOfRelays }}
+        },
+        {
+          "addr": "block-producer.default.svc.cluster.local",
+          "port": {{ .Values.ClusterCommsPort }},
+          "valency": {{ .Values.NumberOfRelays }}
         }
       ]
     }
-  CARDANO_CUSTOM_PEERS: {{ .Values.BlockProducerServiceIp }}:{{ .Values.ClusterCommsPort }}
+  CARDANO_CUSTOM_PEERS: block-producer.default.svc.cluster.local:{{ .Values.ClusterCommsPort }}|block-producer.default.svc.cluster.local:3001
   CARDANO_UPDATE_TOPOLOGY: "true"

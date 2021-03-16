@@ -6,7 +6,7 @@ metadata:
     group: block-producer
 spec:
   type: ClusterIP
-  clusterIP: {{ .Values.BlockProducerServiceIp }}
+  clusterIP: None
   selector:
     app: block-producer
   ports:
