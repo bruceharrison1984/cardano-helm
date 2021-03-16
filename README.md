@@ -1,11 +1,12 @@
 # Cardano Helm Charts
-These charts will deploy a Cardano cluster with one block-producer, and 3 relay nodes
+These charts will deploy a Cardano cluster with one block-producer, and 3 relay nodes.
+
+** This is still very experimental, use at your own risk! **
 
 ## Prerequisites
 - Helm 3
 - kubectl
 - minikube if running locally
-
 
 ## Usage (minikube)
 - Copy all keys in to `./keys` in the root of this project
