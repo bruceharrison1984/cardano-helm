@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: relay-configmap
+  name: relay
   labels:
     {{- include "relay.labels" . | nindent 4 }}
 data:

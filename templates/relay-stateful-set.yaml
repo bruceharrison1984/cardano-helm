@@ -35,13 +35,13 @@ spec:
               name: cluster-comms
           envFrom:
             - configMapRef:
-                name: relay-configmap
+                name: relay
           volumeMounts:
-          - name: relay-data
+          - name: data
             mountPath: /opt/cardano/data
   volumeClaimTemplates:
   - metadata:
-      name: relay-data
+      name: data
       labels:
         {{- include "relay.labels" . | nindent 4 }}
     spec:
