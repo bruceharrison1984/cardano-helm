@@ -2,12 +2,14 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: block-producer-configmap
+  labels: 
+    group: block-producer
 data:
   CARDANO_TOPOLOGY: |
     {
       "Producers": [
         {
-          "addr": "internal-relays.default.svc.cluster.local",
+          "addr": "internal-relays.{{ .Release.Namespace }}.svc.cluster.local",
           "port": {{ .Values.ClusterCommsPort }},
           "valency": {{ .Values.NumberOfRelays }}
         }

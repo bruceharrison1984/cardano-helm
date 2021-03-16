@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: block-producer-pv-keys-claim
+  labels: 
+    group: block-producer
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Mi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: block-producer-pv-data-claim
+  labels: 
+    group: block-producer
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
