@@ -42,6 +42,8 @@ spec:
   volumeClaimTemplates:
   - metadata:
       name: relay-data
+      labels:
+        {{- include "relay.labels" . | nindent 4 }}
     spec:
       accessModes: 
         - ReadWriteMany
