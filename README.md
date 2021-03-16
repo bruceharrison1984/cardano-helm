@@ -1,7 +1,7 @@
+**This is still very experimental, use at your own risk!**
+
 # Cardano Helm Charts
 These charts will deploy a Cardano cluster with one block-producer, and 3 relay nodes.
-
-** This is still very experimental, use at your own risk! **
 
 ## Prerequisites
 - Helm 3
