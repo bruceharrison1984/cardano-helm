@@ -14,4 +14,11 @@ data:
       - job_name: 'cardano' # To scrape data from the cardano node
         scrape_interval: 5s
         static_configs:
-          - targets: ['block-producer.{{ .Release.Namespace }}.svc.cluster.local:12798']
+          - targets:
+            - block-producer.{{ .Release.Namespace }}.svc.cluster.local:12798
+        dns_sd_configs:
+          - names:
+            - internal-relays.{{ .Release.Namespace }}.svc.cluster.local
+            refresh_interval: 30s
+            type: SRV
+            port: 12798
