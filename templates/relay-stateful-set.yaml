@@ -22,6 +22,13 @@ spec:
         - name: relay
           image: {{ include "cardano.container" . }}
           imagePullPolicy: IfNotPresent
+          resources:
+            requests:
+              memory: {{ .Values.RelayMemoryRequest }}
+              cpu: {{ .Values.RelayCpuRequest }}
+            limits:
+              memory: {{ .Values.RelayMemoryLimit }}
+              cpu: {{ .Values.RelayCpuLimit }}
           args: ["run"]
           ports:
             - containerPort: {{ .Values.ClusterCommsPort }}

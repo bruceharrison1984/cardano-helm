@@ -8,10 +8,13 @@ To learn more about the release, try:
  > helm status {{ .Release.Name }}
  > helm get all {{ .Release.Name }}
 
+To change your default kubectl namespace(less typing):
+ > kubectl config set-context --current --namespace={{ .Release.Namespace }}
+
 To view the status of your cluster, try the following commands:
- > kubectl get pods --namespace {{ .Release.Namespace }}
- > kubectl exec -it --namespace {{ .Release.Namespace }} <pod-name> -- gLiveView
- > kubectl logs --namespace {{ .Release.Namespace }} <pod-name> -f
+ > kubectl get pods
+ > kubectl exec -it <pod-name> -- gLiveView
+ > kubectl logs <pod-name> -f
 
 To help develop these templates, please submit PRs!
  > https://github.com/bruceharrison1984/cardano-helm

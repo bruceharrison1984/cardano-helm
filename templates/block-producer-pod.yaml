@@ -30,6 +30,13 @@ spec:
     - name: block-producer
       image: {{ include "cardano.container" . }}
       imagePullPolicy: IfNotPresent
+      resources:
+        requests:
+          memory: {{ .Values.CpuMemoryRequest }}
+          cpu: {{ .Values.CpuCpuRequest }}
+        limits:
+          memory: {{ .Values.CpuMemoryLimit }}
+          cpu: {{ .Values.CpuCpuLimit }}
       args: ["run"]
       volumeMounts:
         - mountPath: /opt/cardano/data
