@@ -13,8 +13,10 @@ To change your default kubectl namespace(less typing):
 
 To view the status of your cluster, try the following commands:
  > kubectl get pods
- > kubectl exec -it <pod-name> -- gLiveView
- > kubectl logs <pod-name> -f
+ > kubectl exec -it block-producer -- gLiveView
+ > kubectl logs block-producer -f
+ > kubectl exec -it relay-0 -- gLiveView
+ > kubectl logs relay-0 -f
 
 To help develop these templates, please submit PRs!
  > https://github.com/bruceharrison1984/cardano-helm
