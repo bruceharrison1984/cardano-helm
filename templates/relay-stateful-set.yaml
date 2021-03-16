@@ -43,7 +43,7 @@ spec:
   - metadata:
       name: data
       labels:
-        {{- include "relay.labels" . | nindent 4 }}
+        {{- include "relay.labels" . | nindent 8 }}
     spec:
       accessModes: 
         - ReadWriteMany
