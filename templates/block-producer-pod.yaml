@@ -5,6 +5,7 @@ metadata:
   labels:
     {{- include "block-producer.labels" . | nindent 4 }}
   annotations:
+    prometheus.io/scrape: "true"
     checksum/config: {{ include (print $.Template.BasePath "/block-producer-configmap.yaml") . | sha256sum }}
 spec:
   volumes:

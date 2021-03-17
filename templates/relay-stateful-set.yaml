@@ -15,6 +15,7 @@ spec:
       labels:
         {{- include "relay.labels" . | nindent 8 }}
       annotations:
+        prometheus.io/scrape: "true"
         checksum/config: {{ include (print $.Template.BasePath "/relay-configmap.yaml") . | sha256sum }}
     spec:
       terminationGracePeriodSeconds: 10
