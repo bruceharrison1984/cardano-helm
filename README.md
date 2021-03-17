@@ -43,6 +43,10 @@ kubectl exec -it --namespace cardano <pod-name> -- gLiveView
     - Due to how K8s handles secrets, the keys are copied from one volume in to another.
         - The keys must be copied from the `secrets` volume in to another volume because Cardano requires the files to have RW permissions, and k8s only allow RO permissions on secret volumes. [github issue](https://github.com/kubernetes/kubernetes/issues/62099)
 
+## Metrics
+Only standard metrics are included. While I had originally considered building out Prometheus/Grafana in these templates, there are already far better Charts for doing so.
+The additive nature of Helm charts allows you to pick and choose the monitoring solution you want without these templates forcing them on you.
+
 ## Storage
 All nodes make use of data volumes on `/opt/cardano/data` to prevent the nodes from having to fully sync again if they go offline
 
