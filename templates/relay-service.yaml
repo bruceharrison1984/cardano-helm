@@ -13,9 +13,7 @@ spec:
     - port: {{ .Values.ClusterCommsPort }}
       targetPort: {{ .Values.ClusterCommsPort }}
       name: cluster-comms
-    - port: 12798
-      targetPort: 12798
-      name: prometheus---
+---
 apiVersion: v1
 kind: Service
 metadata:

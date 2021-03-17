@@ -2,10 +2,10 @@ ClusterCommsPort: 3001
 CardanoContainer: nessusio/cardano-node
 NumberOfRelays: 2
 
-RelayMemoryRequest: 2048Mi
-RelayMemoryLimit: 8192Mi
-RelayCpuRequest: 1
-RelayCpuLimit: 2
+RelayMemoryRequest: 1024Mi
+RelayMemoryLimit: 4096Mi
+RelayCpuRequest: 0.5
+RelayCpuLimit: 1
 RelayStorageRequest: 10Gi
 
 BlockProducerMemoryRequest: 2048Mi
@@ -13,11 +13,3 @@ BlockProducerMemoryLimit: 8192Mi
 BlockProducerCpuRequest: 1
 BlockProducerCpuLimit: 2
 BlockProducerStorageRequest: 30Gi
-
-PrometheusContainer: "prom/prometheus:v2.25.2"
-
-PrometheusMemoryRequest: 512Mi
-PrometheusMemoryLimit: 1024Mi
-PrometheusCpuRequest: 0.5
-PrometheusCpuLimit: 1
-PrometheusStorageRequest: 5Gi

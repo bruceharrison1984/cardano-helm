@@ -13,18 +13,10 @@ spec:
   - Egress
   ingress:
   - from:
-    - podSelector:
-        matchLabels:
-          {{- include "block-producer.selectorLabels" . | nindent 10 }}
+    - ipBlock:
+        cidr: 0.0.0.0/0 ## allow internet traffic to connect to the relay
     ports:
     - protocol: TCP
       port: {{ .Values.ClusterCommsPort }}
-  - from:
-    - podSelector:
-        matchLabels:
-          {{- include "prometheus.selectorLabels" . | nindent 10 }}
-    ports:
-    - protocol: TCP
-      port: 12798
   egress:
   - {}
