@@ -9,7 +9,7 @@ spec:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 5Mi
+      storage: 1Gi ## cloud providers typically offer 1Gi as the smallest volume
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
