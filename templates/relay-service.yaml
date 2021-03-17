@@ -15,4 +15,18 @@ spec:
       name: cluster-comms
     - port: 12798
       targetPort: 12798
-      name: prometheus
+      name: prometheus---
+apiVersion: v1
+kind: Service
+metadata:
+  name: external-relays
+  labels: 
+    {{- include "relay.labels" . | nindent 4 }}
+spec:
+  type: NodePort
+  selector:
+    {{- include "relay.selectorLabels" . | nindent 4 }}
+  ports:
+    - port: {{ .Values.ClusterCommsPort }}
+      targetPort: {{ .Values.ClusterCommsPort }}
+      name: cluster-comms
