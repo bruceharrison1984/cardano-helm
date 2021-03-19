@@ -4,9 +4,9 @@ NumberOfRelays: 2
 
 RelayMemoryRequest: 2048Mi
 RelayMemoryLimit: 8192Mi
-RelayCpuRequest: 2
-RelayCpuLimit: 4
-RelayStorageRequest: 10Gi
+RelayCpuRequest: 1
+RelayCpuLimit: 2
+RelayStorageRequest: 30Gi
 
 BlockProducerMemoryRequest: 2048Mi
 BlockProducerMemoryLimit: 8192Mi
