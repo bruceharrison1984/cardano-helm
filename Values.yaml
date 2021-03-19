@@ -2,14 +2,14 @@ ClusterCommsPort: 3001
 CardanoContainer: nessusio/cardano-node
 NumberOfRelays: 2
 
-RelayMemoryRequest: 1024Mi
-RelayMemoryLimit: 4096Mi
-RelayCpuRequest: 0.5
-RelayCpuLimit: 1
+RelayMemoryRequest: 2048Mi
+RelayMemoryLimit: 8192Mi
+RelayCpuRequest: 2
+RelayCpuLimit: 4
 RelayStorageRequest: 10Gi
 
 BlockProducerMemoryRequest: 2048Mi
 BlockProducerMemoryLimit: 8192Mi
-BlockProducerCpuRequest: 1
-BlockProducerCpuLimit: 2
+BlockProducerCpuRequest: 2
+BlockProducerCpuLimit: 4
 BlockProducerStorageRequest: 30Gi
