@@ -17,13 +17,8 @@ data:
           "addr": "block-producer.{{ .Release.Namespace }}.svc.cluster.local",
           "port": {{ .Values.ClusterCommsPort }},
           "valency": 1
-        },
-        {
-          "addr": "internal-relays.{{ .Release.Namespace }}.svc.cluster.local",
-          "port": {{ .Values.ClusterCommsPort }},
-          "valency": {{ .Values.NumberOfRelays }}
         }
       ]
     }
-  CARDANO_CUSTOM_PEERS: block-producer.{{ .Release.Namespace }}.svc.cluster.local:{{ .Values.ClusterCommsPort }}|internal-relays.{{ .Release.Namespace }}.svc.cluster.local:3001
+  CARDANO_CUSTOM_PEERS: block-producer.{{ .Release.Namespace }}.svc.cluster.local:{{ .Values.ClusterCommsPort }}
   CARDANO_UPDATE_TOPOLOGY: "true"
