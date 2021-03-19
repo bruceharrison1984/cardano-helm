@@ -10,6 +10,21 @@ spec:
   selector:
     {{- include "relay.selectorLabels" . | nindent 4 }}
   ports:
-    - port: {{ .Values.ClusterCommsPort }}
-      targetPort: {{ .Values.ClusterCommsPort }}
+    - protocol: TCP
+      port: {{ .Values.ClusterCommsPort }}
       name: cluster-comms
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: external-endpoints
+  labels: 
+    {{- include "relay.labels" . | nindent 4 }}
+spec:
+  type: NodePort
+  selector:
+    {{- include "relay.selectorLabels" . | nindent 4 }}
+  ports: 
+    - protocol: TCP
+      port: {{ .Values.ClusterCommsPort }}
+      nodePort: 30001
